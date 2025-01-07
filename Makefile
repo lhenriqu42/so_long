@@ -11,7 +11,7 @@ NAME := so_long
 
 
 # FLAGS
-CFLAGS := -Ofast -fno-stack-protector -ffast-math -Wall -Wextra -Werror -Wunreachable-code -g3
+CFLAGS := -Ofast -fno-stack-protector -ffast-math -Wall -Wextra -Wunreachable-code -g3 #-Werror
 libs := -ldl -lglfw -pthread -lm
 
 
@@ -29,7 +29,7 @@ BIN_PATH := ./bin/
 HEADER_PATH := ./includes/
 
 # SOURCES AND OBJECTS
-FILES := main.c
+FILES := main.c error.c
 SRCS := $(addprefix $(SRC_PATH), $(FILES))
 OBJS := $(addprefix $(BIN_PATH), $(FILES:%.c=%.o))
 
