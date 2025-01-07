@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:30:48 by lhenriqu          #+#    #+#             */
-/*   Updated: 2024/11/29 12:44:45 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:31:40 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
+# include "../../libft.h"
 
 # include <stdlib.h>
 # include <unistd.h>

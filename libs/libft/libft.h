@@ -76,6 +76,9 @@ char	*ft_strtrim(char const *s1, char const *set);
 // Finds the first occurrence of a substring within a string (up to 'len' characters)
 char	*ft_strnstr(const char *s1, const char *s2, size_t len);
 
+// Copies up to `n` characters from the string `src` into the buffer `dest`.
+char    *ft_strncpy(char *dest, const char *src, size_t n);
+
 // (malloc) Extracts a substring from a string
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 

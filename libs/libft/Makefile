@@ -37,6 +37,7 @@ LIB_SOURCES = \
 	ft_isalpha.c \
 	ft_isascii.c \
 	ft_isdigit.c \
+	ft_strncpy.c \
 	ft_isprint.c \
 	ft_strjoin.c \
 	ft_strlcat.c \
