@@ -29,7 +29,13 @@ BIN_PATH := ./bin/
 HEADER_PATH := ./includes/
 
 # SOURCES AND OBJECTS
-FILES := main.c error.c
+FILES := \
+	validation.c \
+	error.c \
+	utils.c \
+	init.c \
+	map.c \
+	main.c
 SRCS := $(addprefix $(SRC_PATH), $(FILES))
 OBJS := $(addprefix $(BIN_PATH), $(FILES:%.c=%.o))
 

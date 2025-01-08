@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/07 15:51:02 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/08 17:05:23 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,18 @@
 # define C_BREAK "\033[0m"
 
 // ERRORS
-# define E_INVALID_ARGS 1
-# define E_INVALID_FILE 2
-# define E_INVALID_MAP_NAME 3
-# define E_INVALID_MAP_CONTENT 4
+# define E_MLX_ERROR 1
+# define E_INVALID_ARGS 2
+# define E_INVALID_FILE 3
+# define E_INVALID_MAP_NAME 4
+# define E_INVALID_MAP_SIZE 5
+# define E_INVALID_MAP_CHAR 6
+# define E_INVALID_MAP_EXIT 7
+# define E_INVALID_MAP_WALLS 8
+# define E_INVALID_MAP_PLAYER 9
+# define E_INVALID_MAP_CONTENT 10
+# define E_INVALID_MAP_COLLECT 11
+# define E_MAP_IMPOSSIBLE_FINISH 12
 
 // KEY BINDS
 # define W MLX_KEY_W
@@ -74,14 +82,11 @@ typedef struct s_counter
 	int				player;
 	int				floor;
 	int				exit;
-	int				collect_fill;
 }					t_counter;
 
 typedef struct s_file
 {
-	char			*line;
 	int				fd;
-	char			*fill;
 }					t_file;
 
 typedef struct s_positions
@@ -93,11 +98,16 @@ typedef struct s_positions
 typedef struct s_map
 {
 	char			**map;
-	char			**fill;
 	t_positions		ppos;
-	size_t			x;
-	size_t			y;
+	size_t x_len;
+	size_t y_len;
 }					t_map;
+
+typedef struct s_flood
+{
+	int			collect;
+	char		**map;
+}				t_flood;
 
 typedef struct s_game
 {
@@ -108,9 +118,17 @@ typedef struct s_game
 	t_file			file;
 	int				count;
 	int				steps;
+	t_flood			flood;
 	t_img			img;
 }					t_game;
 
 void handle_error(short code);
+void ft_fill_map(t_map *map);
+void ft_validate_file(char *file);
+void ft_validate_map(t_game *game);
+void ft_init_game_struct(t_game *matrice);
+void ft_get_map(t_game *game, char* file);
+
+
 
 #endif
