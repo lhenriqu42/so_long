@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:25:00 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/08 16:12:09 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:19:13 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void map_error(char *str)
     game = get_game();
     print_error(str);
     if (game->flood.map)
-        ft_delete_game(game->flood.map);
+        ft_free_matrix(game->flood.map);
     if (game->map.map)
-        ft_delete_game(game->map.map);
+        ft_free_matrix(game->map.map);
     if (game->mlx_ptr)
         mlx_terminate(game->mlx_ptr);
 }

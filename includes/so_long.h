@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/08 17:05:23 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:37:53 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@
 // WINDOW
 # define WIDHT_SCREEN 64
 # define HEIGHT_SCREEN 64
-# define WIDTH 64
-# define HEIGHT 64
+# define WIDTH 40
+# define HEIGHT 40
 
 
 
@@ -128,7 +128,7 @@ void ft_validate_file(char *file);
 void ft_validate_map(t_game *game);
 void ft_init_game_struct(t_game *matrice);
 void ft_get_map(t_game *game, char* file);
-
+t_game *get_game();
 
 
 #endif

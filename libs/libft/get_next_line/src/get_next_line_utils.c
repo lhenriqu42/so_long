@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:12:52 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/07 16:31:55 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:13:22 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,28 @@ char *get_nl_address(const char *s)
 		s++;
 	}
 	return (NULL);
+}
+
+void close_and_clear(int fd)
+{
+	char **buffer;
+
+	buffer = get_gnl_buffer();
+    if (fd >= 0 && fd < 1024)
+    {
+        if (buffer[fd])
+        {
+            free(buffer[fd]);
+            buffer[fd] = NULL;
+        }
+        close(fd);
+    }
+}
+
+char **get_gnl_buffer()
+{
+	static char *buffer[1024];
+	return ((char **)buffer);
 }
 
 char *ft_strjoin_with_free(char *s1, char *s2)

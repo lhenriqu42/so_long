@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 11:29:50 by lhenriqu          #+#    #+#             */
-/*   Updated: 2024/10/16 09:44:23 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 10:54:15 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,6 @@ static int	ft_count_words(const char *str, char c)
 	return (count);
 }
 
-static void	*ft_free_matrix(char **matrix, size_t m_word)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < m_word)
-	{
-		free(matrix[i]);
-		i++;
-	}
-	free(matrix);
-	return (NULL);
-}
-
 static char	**fill_matrix(char **matrix, const char *str, char c)
 {
 	size_t	len;
@@ -64,9 +50,12 @@ static char	**fill_matrix(char **matrix, const char *str, char c)
 			len++;
 		if (len > 0)
 		{
-			matrix[m_word] = (char *)malloc((len + 1) * sizeof(char));
+			matrix[m_word] = (char *)ft_calloc((len + 1), sizeof(char));
 			if (matrix[m_word] == NULL)
-				return (ft_free_matrix(matrix, m_word));
+			{
+				ft_free_matrix(matrix);
+				return (NULL);
+			}
 			ft_strlcpy(matrix[m_word], str, len + 1);
 			m_word++;
 			str += len;
@@ -83,7 +72,7 @@ char	**ft_split(char const *str, char c)
 	while (*str == c && *str)
 		str++;
 	count_words = ft_count_words(str, c);
-	matrix = (char **)malloc((count_words + 1) * sizeof(char *));
+	matrix = (char **)ft_calloc((count_words + 1), sizeof(char *));
 	if (matrix == NULL)
 		return (NULL);
 	matrix = fill_matrix(matrix, str, c);

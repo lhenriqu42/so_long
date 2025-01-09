@@ -6,12 +6,11 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 20:10:09 by lhenriqu          #+#    #+#             */
-/*   Updated: 2024/10/14 20:54:34 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:20:49 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stdio.h"
 
 static int	is_negative(int n)
 {

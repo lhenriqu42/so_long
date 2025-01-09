@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:06:45 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/08 17:13:11 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 12:40:00 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ void ft_validate_file(char *file)
 	line = get_next_line(fd);
 	if (line == NULL || line[0] == '\0' || line[0] == '\n' || line[0] == '\r')
 	{
-		close(fd);
+		close_and_clear(fd);
 		free(line);
 		handle_error(E_INVALID_MAP_CONTENT);
 	}
-	close(fd);
+	close_and_clear(fd);
 	free(line);
 }
 
 void get_map_lenght(t_map *map)
 {
-	map->y_len = ft_strlen(map->map[0]);
-	map->x_len = 0;
-	while (map->map[map->x_len])
-		map->x_len++;
+	map->x_len = ft_strlen(map->map[0]);
+	map->y_len = 0;
+	while (map->map[map->y_len])
+		map->y_len++;
 }
 
 static void ft_check_wall(t_map *map)
@@ -47,30 +47,26 @@ static void ft_check_wall(t_map *map)
 	int x;
 	int y;
 
-	x = 0;
 	get_map_lenght(map);
-		// CORRIGIR OS X E Y E PENSAR EM COMO NOMEAR MELHOR DESENHANDO
-		// CORRIGIR OS X E Y E PENSAR EM COMO NOMEAR MELHOR DESENHANDO
-		// CORRIGIR OS X E Y E PENSAR EM COMO NOMEAR MELHOR DESENHANDO
-	while (map->map[x])
+	y = -1;
+	while (map->map[++y])
 	{
-		if (map->y_len != ft_strlen(map->map[x]))
+		if (map->x_len != ft_strlen(map->map[y]))
 			handle_error(E_INVALID_MAP_SIZE);
-		y = -1;
-		while (neo->map.map[y][++x])
+		x = -1;
+		while (map->map[y][++x])
 		{
-			if (neo->map.map[0][x] != '1')
+			if (map->map[0][x] != '1')
 				handle_error(E_INVALID_MAP_WALLS);
-			else if (neo->map.map[y][0] != '1')
+			else if (map->map[y][0] != '1')
 				handle_error(E_INVALID_MAP_WALLS);
-			else if (neo->map.map[y][neo->map.x - 1] != '1')
+			else if (map->map[y][map->x_len - 1] != '1')
 				handle_error(E_INVALID_MAP_WALLS);
-			else if (neo->map.map[neo->map.y - 1][x] != '1')
+			else if (map->map[map->y_len - 1][x] != '1')
 				handle_error(E_INVALID_MAP_WALLS);
 		}
-		y++;
 	}
-	if (neo->map.x * 64 > 1920 || neo->map.y * 64 > 1080)
+	if (map->x_len * WIDTH > 1920 || map->y_len * HEIGHT > 1080)
 		handle_error(E_INVALID_MAP_SIZE);
 }
 

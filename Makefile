@@ -12,7 +12,7 @@ NAME := so_long
 
 # FLAGS
 CFLAGS := -Ofast -fno-stack-protector -ffast-math -Wall -Wextra -Wunreachable-code -g3 #-Werror
-libs := -ldl -lglfw -pthread -lm
+LIBS := -ldl -lglfw -pthread -lm
 
 
 # LIBS
