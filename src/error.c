@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:25:00 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 11:19:13 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:38:34 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ static void map_error(char *str)
         ft_free_matrix(game->flood.map);
     if (game->map.map)
         ft_free_matrix(game->map.map);
-    if (game->mlx_ptr)
-        mlx_terminate(game->mlx_ptr);
+    if (get_mlx()->mlx_ptr)
+        mlx_terminate(get_mlx()->mlx_ptr);
 }
 
 void handle_error(short code)
 {
+    if (code == EXIT_SUCCESS)
+        ft_printf(C_SUCCESS "Finalizado!\n" C_BREAK);
     if (code == E_INVALID_MAP_SIZE)
         map_error("invalid map size");
     if (code == E_INVALID_MAP_WALLS)

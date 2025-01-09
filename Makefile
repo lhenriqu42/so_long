@@ -35,6 +35,7 @@ FILES := \
 	utils.c \
 	init.c \
 	map.c \
+	mlx.c \
 	main.c
 SRCS := $(addprefix $(SRC_PATH), $(FILES))
 OBJS := $(addprefix $(BIN_PATH), $(FILES:%.c=%.o))

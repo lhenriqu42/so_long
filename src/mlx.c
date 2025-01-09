@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 15:22:16 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 15:38:54 by lhenriqu         ###   ########.fr       */
+/*   Created: 2025/01/09 13:42:00 by lhenriqu          #+#    #+#             */
+/*   Updated: 2025/01/09 15:37:34 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_game *get_game()
+void ft_start_mlx(t_game *game)
 {
-    static t_game game;
-    return (&game);
-}
+    t_mlx *mlx;
 
-t_mlx *get_mlx()
-{
-	static t_mlx mlx;
-	return (&mlx);
-}
-
-void get_map_lenght(t_map *map)
-{
-	map->x_len = ft_strlen(map->map[0]);
-	map->y_len = 0;
-	while (map->map[map->y_len])
-		map->y_len++;
+    mlx = get_mlx();
+    mlx->mlx_ptr = NULL;
+    mlx_set_setting(MLX_STRETCH_IMAGE, true);
+    mlx->mlx_ptr = mlx_init(WIDHT_SCREEN * game->map.x_len, HEIGHT_SCREEN
+			* game->map.y_len, "so_long", true);
+	if (!mlx->mlx_ptr)
+		handle_error(E_MLX_ERROR);
 }

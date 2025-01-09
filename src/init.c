@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 12:14:52 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 13:20:51 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:28:35 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void ft_init_game_struct(t_game *game)
     game->flood.map = NULL;
     game->count = 0;
     game->steps = 1;
-    game->mlx_ptr = NULL;
 }
 
 void ft_get_map(t_game *game, char *file)
