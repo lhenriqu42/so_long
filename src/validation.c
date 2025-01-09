@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:06:45 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 12:40:00 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:26:06 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ void ft_validate_file(char *file)
 	}
 	close_and_clear(fd);
 	free(line);
-}
-
-void get_map_lenght(t_map *map)
-{
-	map->x_len = ft_strlen(map->map[0]);
-	map->y_len = 0;
-	while (map->map[map->y_len])
-		map->y_len++;
 }
 
 static void ft_check_wall(t_map *map)
@@ -75,8 +67,23 @@ void ft_validate_map(t_game *game)
 	ft_check_wall(&(game->map));
 	if (game->counter.collect == 0)
 		handle_error(E_INVALID_MAP_COLLECT);
-	if (game->counter.exit != 1)
+	if (game->flood.exit != 1)
 		handle_error(E_INVALID_MAP_EXIT);
 	if (game->counter.player != 1)
 		handle_error(E_INVALID_MAP_PLAYER);
+}
+
+void	ft_validate_exit(t_flood *flood, int x, int y)
+{
+	if (flood->map[y][x] == '1' || flood->map[y][x] == 'X')
+		return ;
+	else if (flood->map[y][x] == 'C')
+		flood->collect--;
+	else if (flood->map[y][x] == 'E')
+		flood->exit--;
+	flood->map[y][x] = 'X';
+	ft_validate_exit(flood, x + 1, y);
+	ft_validate_exit(flood, x - 1, y);
+	ft_validate_exit(flood, x, y + 1);
+	ft_validate_exit(flood, x, y - 1);
 }

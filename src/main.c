@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:22:03 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/08 16:38:46 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:25:45 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ int main(int argc, char *argv[])
     ft_init_game_struct(game);
     ft_get_map(game, argv[1]);
     ft_validate_map(game);
-
+    ft_validate_exit(&(game->flood), game->map.ppos.x, game->map.ppos.y);
+    if(game->flood.collect != 0 || game->flood.exit != 0)
+        handle_error(E_MAP_IMPOSSIBLE_FINISH);
 }

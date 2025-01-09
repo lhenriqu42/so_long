@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:47:57 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 11:14:45 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:19:26 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void ft_verify_char(int c, int x, int y)
 		game->flood.collect++;
 	}
 	else if (c == 'E')
-		game->counter.exit++;
+		game->flood.exit++;
 	else if (c == 'P')
 	{
 		game->counter.player++;

@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 12:37:53 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:20:42 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct s_counter
 	int				walls;
 	int				player;
 	int				floor;
-	int				exit;
 }					t_counter;
 
 typedef struct s_file
@@ -106,6 +105,7 @@ typedef struct s_map
 typedef struct s_flood
 {
 	int			collect;
+	int			exit;
 	char		**map;
 }				t_flood;
 
@@ -129,6 +129,7 @@ void ft_validate_map(t_game *game);
 void ft_init_game_struct(t_game *matrice);
 void ft_get_map(t_game *game, char* file);
 t_game *get_game();
-
+void get_map_lenght(t_map *map);
+void	ft_validate_exit(t_flood *flood, int x, int y);
 
 #endif
