@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:42:00 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 15:37:34 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:08:24 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,5 @@ void ft_start_mlx(t_game *game)
 			* game->map.y_len, "so_long", true);
 	if (!mlx->mlx_ptr)
 		handle_error(E_MLX_ERROR);
+    start_images(mlx->mlx_ptr);
 }

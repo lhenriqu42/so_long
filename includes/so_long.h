@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 15:37:05 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:57:40 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,17 @@
 // WINDOW
 # define WIDHT_SCREEN 64
 # define HEIGHT_SCREEN 64
-# define WIDTH 40
-# define HEIGHT 40
+# define WIDTH 64
+# define HEIGHT 64
 
-
-
-typedef struct s_draw
-{
-	mlx_image_t		*img;
-	mlx_texture_t	*texture;
-	int				x;
-	int				y;
-}					t_draw;
 
 typedef struct s_img
 {
-	t_draw			floor;
-	t_draw			wall;
-	t_draw			player;
-	t_draw			exit;
-	t_draw			collect[10000];
+	mlx_image_t			*floor;
+	mlx_image_t			*wall;
+	mlx_image_t			*player;
+	mlx_image_t			*exit;
+	mlx_image_t			*collect[10000];
 }					t_img;
 
 typedef struct s_counter
@@ -134,6 +125,7 @@ void	get_map_lenght(t_map *map);
 void	handle_error(short code);
 void	ft_fill_map(t_map *map);
 t_game	*get_game();
+void start_images(mlx_t *mlx_ptr);
 t_mlx	*get_mlx();
 void ft_start_mlx(t_game *game);
 

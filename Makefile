@@ -31,6 +31,7 @@ HEADER_PATH := ./includes/
 # SOURCES AND OBJECTS
 FILES := \
 	validation.c \
+	image.c \
 	error.c \
 	utils.c \
 	init.c \
