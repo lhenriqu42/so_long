@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:45:30 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 15:47:49 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:43:09 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	ft_put_window(t_game *game, int c, int x, int y)
 		mlx_image_to_window(mlx_ptr, game->img.player, x, y);
 	else if (c == 'C')
 		init_collect(game, x, y);
+	else if (c == 'K')
+		mlx_image_to_window(mlx_ptr, game->img.enemy, x, y);
 	else if (c == 'E')
 		mlx_image_to_window(mlx_ptr, game->img.exit, x, y);
 }
@@ -49,6 +51,7 @@ void	start_images(mlx_t *mlx_ptr)
 	game->img.wall = image_load(mlx_ptr, T_PATH T_WALL);
 	game->img.player = image_load(mlx_ptr, T_PATH T_PLAYER);
 	game->img.exit = image_load(mlx_ptr, T_PATH T_EXIT);
+	game->img.enemy = image_load(mlx_ptr, T_PATH T_ENEMY);
 	mlx_image_to_window(mlx_ptr, game->img.floor, 0, 0);
 	i = -1;
 	while (game->map.map[++i])

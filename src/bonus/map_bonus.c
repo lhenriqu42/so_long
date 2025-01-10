@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:47:57 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 15:48:01 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:32:05 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_fill_map(t_map *map)
 		x = -1;
 		while (map->map[y][++x])
 		{
-			if (!ft_strchr("CEP10", map->map[y][x]))
+			if (!ft_strchr("CEPK10", map->map[y][x]))
 				handle_error(E_INVALID_MAP_CHAR);
 			ft_verify_char(map->map[y][x], x, y);
 		}

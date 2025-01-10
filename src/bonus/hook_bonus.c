@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:11:44 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 15:47:46 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:47:43 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ static void	ft_check_collect(t_img *img, int x, int y)
 
 static void	ft_check_exit(int x, int y)
 {
+
+	if (get_game()->map.map[y / HEIGHT][x / WIDTH] == 'K')
+		handle_error(E_YOU_WERE_KILLED);
 	if (get_game()->map.map[y / HEIGHT][x / WIDTH] == 'E')
 	{
 		if (get_game()->count == 0)

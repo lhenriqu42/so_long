@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 15:47:25 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:47:35 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define T_PATH "assets/"
 # define T_COLLECT "ore.png"
 # define T_PLAYER "player.png"
+# define T_ENEMY "enemy.png"
 # define T_FLOOR "floor.png"
 # define T_EXIT "exit.png"
 # define T_WALL "wall.png"
@@ -42,6 +43,7 @@
 
 // MAP ERRORS
 # define E_MLX_ERROR 5
+# define E_YOU_WERE_KILLED 13
 # define E_INVALID_MAP_SIZE 6
 # define E_INVALID_MAP_CHAR 7
 # define E_INVALID_MAP_EXIT 8
@@ -78,6 +80,7 @@ typedef struct s_img
 	mlx_image_t			*wall;
 	mlx_image_t			*player;
 	mlx_image_t			*exit;
+	mlx_image_t			*enemy;
 	t_coin				collect[10000];
 }						t_img;
 

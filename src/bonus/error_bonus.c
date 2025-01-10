@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:25:00 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 15:47:39 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:47:29 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	handle_map_error(short code)
 		map_error("map must have exactly one player.", &print_e);
 	if (code == E_INVALID_MAP_COLLECT)
 		map_error("map must contain at least one collectible.", &print_e);
+	if (code == E_YOU_WERE_KILLED)
+		map_error("you were killed!", &print_e);
 }
 
 void	handle_error(short code)
