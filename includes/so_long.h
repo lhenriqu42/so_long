@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 14:20:05 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:34:49 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ typedef struct s_map
 {
 	char			**map;
 	t_positions		ppos;
-	size_t x_len;
-	size_t y_len;
+	size_t			x_len;
+	size_t			y_len;
 }					t_map;
 
 typedef struct s_flood
@@ -129,29 +129,25 @@ typedef struct s_game
 	t_img			img;
 }					t_game;
 
-
 // VALIDATION FUNCTIONS
 void		ft_validate_exit(t_flood *flood, int x, int y);
 void		ft_validate_map(t_game *game);
 void		ft_validate_file(char *file);
 
-
 // START FUNCTIONS
-void 		init_collect(t_game *game, int x, int y);
+void		init_collect(t_game *game, int x, int y);
 void		ft_init_game_struct(t_game *matrice);
-void		ft_get_map(t_game *game, char* file);
-void 		start_images(mlx_t *mlx_ptr);
-void 		ft_start_mlx(t_game *game);
+void		ft_get_map(t_game *game, char *file);
+void		start_images(mlx_t *mlx_ptr);
+void		ft_start_mlx(t_game *game);
 void		ft_fill_map(t_map *map);
-
 
 // UTILS FUNCTIONS
 void		key_hook(mlx_key_data_t key_args, void *param);
 mlx_image_t	*image_load(void *mlx_ptr, char *path);
 void		get_map_lenght(t_map *map);
 void		handle_error(short code);
-t_game		*get_game();
-t_mlx		*get_mlx();
-
+t_game		*get_game(void);
+t_mlx		*get_mlx(void);
 
 #endif
