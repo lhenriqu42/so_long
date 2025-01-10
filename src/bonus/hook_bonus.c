@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:11:44 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 16:47:43 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:23:45 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	key_hook(mlx_key_data_t key_args, void *param)
 	int		y;
 	int		x;
 
+	display_moves(get_game());
 	img = (t_img *)param;
 	y = img->player->instances[0].y;
 	x = img->player->instances[0].x;

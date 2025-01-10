@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 16:47:35 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:24:19 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ void		key_hook(mlx_key_data_t key_args, void *param);
 mlx_image_t	*image_load(void *mlx_ptr, char *path);
 void		get_map_lenght(t_map *map);
 void		handle_error(short code);
+void		display_moves(t_game *game);
 t_game		*get_game(void);
 t_mlx		*get_mlx(void);
 
