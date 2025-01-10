@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   validation_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:06:45 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 13:37:29 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:02:12 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_validate_file(char *file)
 {
@@ -75,7 +75,8 @@ void	ft_validate_map(t_game *game)
 
 void	ft_validate_exit(t_flood *flood, int x, int y)
 {
-	if (flood->map[y][x] == '1' || flood->map[y][x] == 'X')
+	if (flood->map[y][x] == '1' || flood->map[y][x] == 'X'
+		|| flood->map[y][x] == 'K')
 		return ;
 	else if (flood->map[y][x] == 'C')
 		flood->collect--;
