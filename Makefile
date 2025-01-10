@@ -1,6 +1,7 @@
 # VALGRIND
 VALGRIND_LOG := valgrind.log
 
+
 # COLORS
 GREEN := \033[32m
 RED := \033[31m
@@ -31,6 +32,7 @@ SRC_PATH := ./src/
 BIN_PATH := ./bin/
 HEADER_PATH := ./includes/
 
+
 # SOURCES AND OBJECTS
 FILES := \
 	validation.c \
@@ -45,7 +47,24 @@ FILES := \
 SRCS := $(addprefix $(SRC_PATH), $(FILES))
 OBJS := $(addprefix $(BIN_PATH), $(FILES:%.c=%.o))
 
+# BONUS
+BONUS_NAME := so_long_bonus
+BONUS_SRC_PATH := ./src/bonus/
+BONUS_FILES := \
+	validation_bonus.c \
+	image_bonus.c \
+	error_bonus.c \
+	utils_bonus.c \
+	hook_bonus.c \
+	init_bonus.c \
+	map_bonus.c \
+	mlx_bonus.c \
+	main_bonus.c
+BONUS_SRCS := $(addprefix $(BONUS_SRC_PATH), $(BONUS_FILES))
+BONUS_OBJS := $(addprefix $(BIN_PATH), $(BONUS_FILES:%.c=%.o))
+
 all: mlx libft $(BIN_PATH) print $(NAME)
+bonus: mlx libft $(BIN_PATH) print_bonus $(BONUS_NAME)
 
 mlx: 
 ifeq ($(wildcard $(MLX_BUILD_PATH)/$(MLX_NAME)),)
@@ -75,6 +94,14 @@ ifeq ($(wildcard $(NAME)),)
 	@echo " "
 endif
 
+print_bonus:
+ifeq ($(wildcard $(BONUS_NAME)),)
+	@printf "$(GREEN) ------------------------$(COLOR_LIMITER)"
+	@printf "$(GREEN)| Compiling Bonus Project |$(COLOR_LIMITER)"
+	@printf "$(GREEN)------------------------$(COLOR_LIMITER)"
+	@echo " "
+endif
+
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_PATH)/$(LIB_NAME) $(MLX_BUILD_PATH)/$(MLX_NAME) $(LIBS) -I$(HEADER_PATH)
 	@printf "$(CYAN)------ ----------------------------------------------- ------$(COLOR_LIMITER)\n"
@@ -82,7 +109,19 @@ $(NAME): $(OBJS)
 	@printf "$(CYAN)------ ----------------------------------------------- ------$(COLOR_LIMITER)\n"
 	@echo " "
 
+$(BONUS_NAME): $(BONUS_OBJS)
+	@$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(LIB_PATH)/$(LIB_NAME) $(MLX_BUILD_PATH)/$(MLX_NAME) $(LIBS) -I$(HEADER_PATH)
+	@printf "$(CYAN)------ ----------------------------------------------------- ------$(COLOR_LIMITER)\n"
+	@printf "$(CYAN)------| SO_LONG_BONUS executable was created successfully!! |------$(COLOR_LIMITER)\n"
+	@printf "$(CYAN)------ ----------------------------------------------------- ------$(COLOR_LIMITER)\n"
+	@echo " "
+
 $(BIN_PATH)%.o: $(SRC_PATH)%.c
+	@printf "$(GREEN)[Compiling]$(COLOR_LIMITER) $(notdir $<)..."
+	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADER_PATH)
+	@echo " "
+
+$(BIN_PATH)%.o: $(BONUS_SRC_PATH)%.c
 	@printf "$(GREEN)[Compiling]$(COLOR_LIMITER) $(notdir $<)..."
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(HEADER_PATH)
 	@echo " "
@@ -111,4 +150,4 @@ valgrind: all
 	./$(NAME) maps/test.ber
 	@cat $(VALGRIND_LOG)
 
-.PHONY: all clean fclean re print libft mlx
+.PHONY: all clean fclean re print libft mlx print_bonus
