@@ -6,58 +6,69 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:25:00 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 15:38:34 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:27:31 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void print_error(char *str)
+static void	print_e(char *str)
 {
-    ft_printf_fd(2, C_ERROR "%s\n" C_BREAK, str);
+	ft_printf_fd(2, C_ERROR "%s\n" C_BREAK, str);
 }
 
-static void map_error(char *str)
+static void	print_s(char *str)
 {
-    t_game *game;
-
-    game = get_game();
-    print_error(str);
-    if (game->flood.map)
-        ft_free_matrix(game->flood.map);
-    if (game->map.map)
-        ft_free_matrix(game->map.map);
-    if (get_mlx()->mlx_ptr)
-        mlx_terminate(get_mlx()->mlx_ptr);
+	ft_printf_fd(1, C_SUCCESS "%s\n" C_BREAK, str);
 }
 
-void handle_error(short code)
+static void	map_error(char *str, void (*callback)(char *str))
 {
-    if (code == EXIT_SUCCESS)
-        ft_printf(C_SUCCESS "Finalizado!\n" C_BREAK);
-    if (code == E_INVALID_MAP_SIZE)
-        map_error("invalid map size");
-    if (code == E_INVALID_MAP_WALLS)
-        map_error("invalid map walls");
-    if (code == E_INVALID_MAP_CHAR)
-        map_error("invalid character!");
-    if (code == E_MAP_IMPOSSIBLE_FINISH)
-        map_error("map can't be finished!");
-    if (code == E_INVALID_MAP_CONTENT)
-        print_error("invalid map content!");
-    if (code == E_INVALID_FILE)
-        perror(C_ERROR "invalid file" C_BREAK);
-    if (code == E_MLX_ERROR)
-        map_error("mlx cannot be initialized!");
-    if (code == E_INVALID_ARGS)
-        print_error("expected: ./so_long <map>");
-    if (code == E_INVALID_MAP_EXIT)
-        map_error("map must have exactly one exit.");
-    if (code == E_INVALID_MAP_NAME)
-        print_error("maps must be terminated by .ber");
-    if (code == E_INVALID_MAP_PLAYER)
-        map_error("map must have exactly one player.");
-    if (code == E_INVALID_MAP_COLLECT)
-        map_error("map must contain at least one collectible.");
-    exit(code);
+	t_game	*game;
+
+	game = get_game();
+	callback(str);
+	if (game->flood.map)
+		ft_free_matrix(game->flood.map);
+	if (game->map.map)
+		ft_free_matrix(game->map.map);
+	if (get_mlx()->mlx_ptr)
+		mlx_terminate(get_mlx()->mlx_ptr);
+}
+
+static void	handle_map_error(short code)
+{
+	if (code == EXIT_SUCCESS)
+		map_error("Finalizado!\n", &print_s);
+	if (code == E_INVALID_MAP_SIZE)
+		map_error("invalid map size", &print_e);
+	if (code == E_INVALID_MAP_WALLS)
+		map_error("invalid map walls", &print_e);
+	if (code == E_INVALID_MAP_CHAR)
+		map_error("invalid character!", &print_e);
+	if (code == E_MAP_IMPOSSIBLE_FINISH)
+		map_error("map can't be finished!", &print_e);
+	if (code == E_MLX_ERROR)
+		map_error("mlx cannot be initialized!", &print_e);
+	if (code == E_INVALID_MAP_EXIT)
+		map_error("map must have exactly one exit.", &print_e);
+	if (code == E_INVALID_MAP_PLAYER)
+		map_error("map must have exactly one player.", &print_e);
+	if (code == E_INVALID_MAP_COLLECT)
+		map_error("map must contain at least one collectible.", &print_e);
+}
+
+void	handle_error(short code)
+{
+	if (code >= 5 || code == EXIT_SUCCESS)
+		handle_map_error(code);
+	if (code == E_INVALID_MAP_CONTENT)
+		print_e("invalid map content!");
+	if (code == E_INVALID_FILE)
+		perror(C_ERROR "invalid file" C_BREAK);
+	if (code == E_INVALID_ARGS)
+		print_e("expected: ./so_long <map>");
+	if (code == E_INVALID_MAP_NAME)
+		print_e("maps must be terminated by .ber");
+	exit(code);
 }

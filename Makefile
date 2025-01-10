@@ -1,3 +1,6 @@
+# VALGRIND
+VALGRIND_LOG := valgrind.log
+
 # COLORS
 GREEN := \033[32m
 RED := \033[31m
@@ -34,6 +37,7 @@ FILES := \
 	image.c \
 	error.c \
 	utils.c \
+	hook.c \
 	init.c \
 	map.c \
 	mlx.c \
@@ -96,5 +100,15 @@ fclean: clean
 
 re: fclean
 	@make --no-print-directory
+
+valgrind: all
+	@valgrind --leak-check=full \
+	--show-reachable=yes \
+	--track-fds=yes \
+	--show-leak-kinds=all -s \
+	--track-origins=yes \
+	--log-file=$(VALGRIND_LOG) \
+	./$(NAME) maps/test.ber
+	@cat $(VALGRIND_LOG)
 
 .PHONY: all clean fclean re print libft mlx

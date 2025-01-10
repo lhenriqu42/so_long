@@ -6,15 +6,15 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:47:57 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 15:15:05 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:30:40 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void ft_verify_char(int c, int x, int y)
+static void	ft_verify_char(int c, int x, int y)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = get_game();
 	if (c == 'C')
@@ -30,16 +30,12 @@ static void ft_verify_char(int c, int x, int y)
 		game->map.ppos.y = y;
 		game->map.ppos.x = x;
 	}
-	else if (c == '1')
-		game->counter.walls++;
-	else if (c == '0')
-		game->counter.floor++;
 }
 
-void ft_fill_map(t_map *map)
+void	ft_fill_map(t_map *map)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = -1;
 	while (map->map[++y])

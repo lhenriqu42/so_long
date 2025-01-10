@@ -6,16 +6,16 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:06:45 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 13:26:06 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:37:29 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void ft_validate_file(char *file)
+void	ft_validate_file(char *file)
 {
-	int fd;
-	char *line;
+	char	*line;
+	int		fd;
 
 	line = "\0";
 	if (ft_strncmp(file + ft_strlen(file) - 4, ".ber", 4) != 0)
@@ -34,10 +34,10 @@ void ft_validate_file(char *file)
 	free(line);
 }
 
-static void ft_check_wall(t_map *map)
+static void	ft_check_wall(t_map *map)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	get_map_lenght(map);
 	y = -1;
@@ -62,7 +62,7 @@ static void ft_check_wall(t_map *map)
 		handle_error(E_INVALID_MAP_SIZE);
 }
 
-void ft_validate_map(t_game *game)
+void	ft_validate_map(t_game *game)
 {
 	ft_check_wall(&(game->map));
 	if (game->counter.collect == 0)

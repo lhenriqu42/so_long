@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 10:58:18 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:20:05 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,24 @@
 # define T_EXIT "exit.png"
 # define T_WALL "wall.png"
 
-
 // COLORS
 # define C_SUCCESS "\033[32;3m"
 # define C_ERROR "\033[31;1m"
 # define C_BREAK "\033[0m"
 
-// ERRORS
-# define E_MLX_ERROR 1
-# define E_INVALID_ARGS 2
-# define E_INVALID_FILE 3
-# define E_INVALID_MAP_NAME 4
-# define E_INVALID_MAP_SIZE 5
-# define E_INVALID_MAP_CHAR 6
-# define E_INVALID_MAP_EXIT 7
-# define E_INVALID_MAP_WALLS 8
-# define E_INVALID_MAP_PLAYER 9
-# define E_INVALID_MAP_CONTENT 10
+// SIMPLE ERRORS
+# define E_INVALID_ARGS 1
+# define E_INVALID_FILE 2
+# define E_INVALID_MAP_NAME 3
+# define E_INVALID_MAP_CONTENT 4
+
+// MAP ERRORS
+# define E_MLX_ERROR 5
+# define E_INVALID_MAP_SIZE 6
+# define E_INVALID_MAP_CHAR 7
+# define E_INVALID_MAP_EXIT 8
+# define E_INVALID_MAP_WALLS 9
+# define E_INVALID_MAP_PLAYER 10
 # define E_INVALID_MAP_COLLECT 11
 # define E_MAP_IMPOSSIBLE_FINISH 12
 
@@ -58,10 +59,11 @@
 # define DOWN MLX_KEY_DOWN
 # define LEFT MLX_KEY_LEFT
 # define RIGHT MLX_KEY_RIGHT
+# define ESC MLX_KEY_ESCAPE
 
-// WINDOW
-# define WIDTH 64
-# define HEIGHT 64
+// TEXTURE BLOCK SIZE
+# define WIDTH 65
+# define HEIGHT 65
 
 typedef struct s_coin
 {
@@ -82,9 +84,7 @@ typedef struct s_img
 typedef struct s_counter
 {
 	int				collect;
-	int				walls;
 	int				player;
-	int				floor;
 }					t_counter;
 
 typedef struct s_file
@@ -129,19 +129,29 @@ typedef struct s_game
 	t_img			img;
 }					t_game;
 
-void	ft_validate_exit(t_flood *flood, int x, int y);
-void	ft_init_game_struct(t_game *matrice);
-void	ft_get_map(t_game *game, char* file);
-void	ft_validate_map(t_game *game);
-void	ft_validate_file(char *file);
-void	get_map_lenght(t_map *map);
-void	handle_error(short code);
-void	ft_fill_map(t_map *map);
-mlx_image_t *image_load(void *mlx_ptr, char *path);
-t_game	*get_game();
-void start_images(mlx_t *mlx_ptr);
-t_mlx	*get_mlx();
-void ft_start_mlx(t_game *game);
-void init_collect(t_game *game, int x, int y);
+
+// VALIDATION FUNCTIONS
+void		ft_validate_exit(t_flood *flood, int x, int y);
+void		ft_validate_map(t_game *game);
+void		ft_validate_file(char *file);
+
+
+// START FUNCTIONS
+void 		init_collect(t_game *game, int x, int y);
+void		ft_init_game_struct(t_game *matrice);
+void		ft_get_map(t_game *game, char* file);
+void 		start_images(mlx_t *mlx_ptr);
+void 		ft_start_mlx(t_game *game);
+void		ft_fill_map(t_map *map);
+
+
+// UTILS FUNCTIONS
+void		key_hook(mlx_key_data_t key_args, void *param);
+mlx_image_t	*image_load(void *mlx_ptr, char *path);
+void		get_map_lenght(t_map *map);
+void		handle_error(short code);
+t_game		*get_game();
+t_mlx		*get_mlx();
+
 
 #endif
