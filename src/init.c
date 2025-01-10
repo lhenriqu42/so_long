@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 12:14:52 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 15:28:35 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:57:18 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,18 @@ void ft_get_map(t_game *game, char *file)
     free(map);
     close_and_clear(game->file.fd);
     ft_fill_map(&(game->map));
+}
+
+void init_collect(t_game *game, int x, int y)
+{
+    mlx_t           *mlx_ptr;
+    int             *c;
+    
+    c = &(game->count);
+    mlx_ptr = get_mlx()->mlx_ptr;
+    game->img.collect[*c].img = image_load(mlx_ptr, T_PATH T_COLLECT);
+    game->img.collect[*c].x = x;
+    game->img.collect[*c].y = y;
+    mlx_image_to_window(mlx_ptr, game->img.collect[*c].img, x, y);
+	(*c)++;
 }

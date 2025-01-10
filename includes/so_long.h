@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 16:57:40 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:58:18 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+// TEXTURE PATHS
+# define T_PATH "assets/"
+# define T_COLLECT "ore.png"
+# define T_PLAYER "player.png"
+# define T_FLOOR "floor.png"
+# define T_EXIT "exit.png"
+# define T_WALL "wall.png"
+
 
 // COLORS
 # define C_SUCCESS "\033[32;3m"
@@ -51,11 +60,15 @@
 # define RIGHT MLX_KEY_RIGHT
 
 // WINDOW
-# define WIDHT_SCREEN 64
-# define HEIGHT_SCREEN 64
 # define WIDTH 64
 # define HEIGHT 64
 
+typedef struct s_coin
+{
+	mlx_image_t		*img;
+	int				x;
+	int				y;
+}					t_coin;
 
 typedef struct s_img
 {
@@ -63,8 +76,8 @@ typedef struct s_img
 	mlx_image_t			*wall;
 	mlx_image_t			*player;
 	mlx_image_t			*exit;
-	mlx_image_t			*collect[10000];
-}					t_img;
+	t_coin				collect[10000];
+}						t_img;
 
 typedef struct s_counter
 {
@@ -124,9 +137,11 @@ void	ft_validate_file(char *file);
 void	get_map_lenght(t_map *map);
 void	handle_error(short code);
 void	ft_fill_map(t_map *map);
+mlx_image_t *image_load(void *mlx_ptr, char *path);
 t_game	*get_game();
 void start_images(mlx_t *mlx_ptr);
 t_mlx	*get_mlx();
 void ft_start_mlx(t_game *game);
+void init_collect(t_game *game, int x, int y);
 
 #endif
