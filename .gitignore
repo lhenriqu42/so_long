@@ -1,5 +1,8 @@
 valgrind.log
+
 so_long
+so_long_bonus
+
 bin
 
 libs/libft/libft.a
