@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 17:24:19 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:06:49 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@
 # define ESC MLX_KEY_ESCAPE
 
 // TEXTURE BLOCK SIZE
-# define WIDTH 65
-# define HEIGHT 65
+# define WIDTH 80
+# define HEIGHT 80
 
 typedef struct s_coin
 {
