@@ -52,6 +52,7 @@ BONUS_NAME := so_long_bonus
 BONUS_SRC_PATH := ./src/bonus/
 BONUS_FILES := \
 	validation_bonus.c \
+	animation_bonus.c \
 	image_bonus.c \
 	error_bonus.c \
 	utils_bonus.c \
@@ -59,7 +60,7 @@ BONUS_FILES := \
 	init_bonus.c \
 	map_bonus.c \
 	mlx_bonus.c \
-	main_bonus.c
+	main_bonus.c 
 BONUS_SRCS := $(addprefix $(BONUS_SRC_PATH), $(BONUS_FILES))
 BONUS_OBJS := $(addprefix $(BIN_PATH), $(BONUS_FILES:%.c=%.o))
 
@@ -137,6 +138,7 @@ fclean: clean
 	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(NAME)
 	@rm -rf $(BONUS_NAME)
+	@rm -rf $(VALGRIND_LOG)
 
 re: fclean
 	@make --no-print-directory
@@ -151,4 +153,14 @@ valgrind: all
 	./$(NAME) maps/test.ber
 	@cat $(VALGRIND_LOG)
 
-.PHONY: all clean fclean re print libft mlx print_bonus
+valgrind_bonus: bonus
+	@valgrind --leak-check=full \
+	--show-reachable=yes \
+	--track-fds=yes \
+	--show-leak-kinds=all -s \
+	--track-origins=yes \
+	--log-file=$(VALGRIND_LOG) \
+	./$(BONUS_NAME) maps/bonus.ber
+	@cat $(VALGRIND_LOG)
+
+.PHONY: all clean fclean re print libft mlx print_bonus valgrind_bonus

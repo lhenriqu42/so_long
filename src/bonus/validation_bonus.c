@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:06:45 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 16:02:12 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:15:19 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void	ft_validate_map(t_game *game)
 		handle_error(E_INVALID_MAP_EXIT);
 	if (game->counter.player != 1)
 		handle_error(E_INVALID_MAP_PLAYER);
+	ft_validate_exit(&(game->flood), game->map.ppos.x, game->map.ppos.y);
+	if (game->flood.collect != 0 || game->flood.exit != 0)
+		handle_error(E_MAP_IMPOSSIBLE_FINISH);
 }
 
 void	ft_validate_exit(t_flood *flood, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/14 12:06:49 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:22:53 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,26 @@
 
 // TEXTURE PATHS
 # define T_PATH "assets/"
+# define T_BONUS "bonus/"
+
+// ANIMATED TEXTURE PATH
+# define AT_DIE "die/"
+# define AT_ENEMY "enemy/"
+# define AT_PDOWN "pdown/"
+# define AT_PLEFT "pleft/"
+# define AT_PRIGHT "pright/"
+# define AT_PUP "pup/"
+
+// ANIMATED TEXTURE COUNT
+# define ATC_DIE 6
+# define ATC_ENEMY 10
+# define ATC_PDOWN 6
+# define ATC_PLEFT 9
+# define ATC_PRIGHT 9
+# define ATC_PUP 6
+
+// TEXTURE NAMES
 # define T_COLLECT "ore.png"
-# define T_PLAYER "player.png"
-# define T_ENEMY "enemy.png"
 # define T_FLOOR "floor.png"
 # define T_EXIT "exit.png"
 # define T_WALL "wall.png"
@@ -74,13 +91,27 @@ typedef struct s_coin
 	int				y;
 }					t_coin;
 
+typedef struct s_animation
+{
+	mlx_image_t	*frames[20];
+	mlx_image_t	*current_frame;
+	int			frame_count;
+	int			current_index;
+	int			delay;
+	int			timer;
+}				t_animation;
+
 typedef struct s_img
 {
 	mlx_image_t			*floor;
 	mlx_image_t			*wall;
-	mlx_image_t			*player;
 	mlx_image_t			*exit;
-	mlx_image_t			*enemy;
+	t_animation			pright;
+	t_animation			pleft;
+	t_animation			pdown;
+	t_animation			pup;
+	t_animation			pdie;
+	t_animation			enemy;
 	t_coin				collect[10000];
 }						t_img;
 
@@ -141,17 +172,20 @@ void		ft_validate_file(char *file);
 void		init_collect(t_game *game, int x, int y);
 void		ft_init_game_struct(t_game *matrice);
 void		ft_get_map(t_game *game, char *file);
+void		ft_init_animations(t_img *img);
 void		start_images(mlx_t *mlx_ptr);
 void		ft_start_mlx(t_game *game);
 void		ft_fill_map(t_map *map);
 
 // UTILS FUNCTIONS
 void		key_hook(mlx_key_data_t key_args, void *param);
-mlx_image_t	*image_load(void *mlx_ptr, char *path);
+mlx_image_t	*image_load(char *path);
 void		get_map_lenght(t_map *map);
 void		handle_error(short code);
 void		display_moves(t_game *game);
 t_game		*get_game(void);
 t_mlx		*get_mlx(void);
+void		update_animation(t_animation *anim);
+
 
 #endif

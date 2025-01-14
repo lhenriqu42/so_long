@@ -6,11 +6,23 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:42:00 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 15:48:07 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:11:10 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+static void animation_hook(void *param)
+{
+	t_game	*game;
+	game = (t_game *)param;
+    // Atualiza animações, estados do jogo, etc.
+    update_animation(&(game->img.enemy));
+
+    // Rendeiriza o estado do jogo (se necessário)
+    // Exemplo: ft_put_to_window(game, 'K', game->enemy_x, game->enemy_y);
+
+}
 
 void	ft_start_mlx(t_game *game)
 {
@@ -24,5 +36,7 @@ void	ft_start_mlx(t_game *game)
 	if (!mlx->mlx_ptr)
 		handle_error(E_MLX_ERROR);
 	start_images(mlx->mlx_ptr);
-	mlx_key_hook(mlx->mlx_ptr, &key_hook, &(get_game()->img));
+	// mlx_key_hook(mlx->mlx_ptr, &key_hook, &(get_game()->img));
+	mlx_loop_hook(get_mlx()->mlx_ptr, &animation_hook, game);
+	mlx_loop(get_mlx()->mlx_ptr);
 }
