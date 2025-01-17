@@ -1,4 +1,4 @@
-# Libft
+# So_long
 
 So_long is my first graphic project! It's a game where you need to collect all coins, reach the exit with the fewest possible movements, and avoid enemies (in the bonus version).
 
