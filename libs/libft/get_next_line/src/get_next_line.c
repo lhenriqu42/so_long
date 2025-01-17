@@ -6,20 +6,20 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:28:40 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/09 12:15:48 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:12:33 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char *ft_read(int fd, char *buffer);
-static char *get_line(char *buffer);
-static char *get_rest(char *buffer);
+static char	*ft_read(int fd, char *buffer);
+static char	*get_line(char *buffer);
+static char	*get_rest(char *buffer);
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	char **buffer;
-	char *line;
+	char	**buffer;
+	char	*line;
 
 	buffer = get_gnl_buffer();
 	if (BUFFER_SIZE <= 0 || fd < 0)
@@ -33,10 +33,10 @@ char *get_next_line(int fd)
 	return (line);
 }
 
-static char *ft_read(int fd, char *buffer)
+static char	*ft_read(int fd, char *buffer)
 {
-	char *temp_buffer;
-	ssize_t bytes_read;
+	char	*temp_buffer;
+	ssize_t	bytes_read;
 
 	temp_buffer = malloc(BUFFER_SIZE + 1);
 	if (temp_buffer == NULL)
@@ -58,11 +58,11 @@ static char *ft_read(int fd, char *buffer)
 	return (buffer);
 }
 
-static char *get_line(char *buffer)
+static char	*get_line(char *buffer)
 {
-	char *line;
-	char *nl_address;
-	size_t line_len;
+	char	*line;
+	char	*nl_address;
+	size_t	line_len;
 
 	if (buffer[0] == '\0')
 		return (NULL);
@@ -85,10 +85,10 @@ static char *get_line(char *buffer)
 	return (line);
 }
 
-static char *get_rest(char *buffer)
+static char	*get_rest(char *buffer)
 {
-	char *rest;
-	char *nl_address;
+	char	*rest;
+	char	*nl_address;
 
 	rest = NULL;
 	nl_address = get_nl_address(buffer);

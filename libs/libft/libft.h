@@ -16,8 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# include "./ft_printf/includes/ft_printf.h"  // Include for ft_printf functionality
-# include "./get_next_line/includes/get_next_line.h"  // Include for get_next_line functionality
+# include "./ft_printf/includes/ft_printf.h"
+# include "./get_next_line/includes/get_next_line.h"
 
 // Returns the absolute value of a floating-point number
 float	ft_abs(float number);
@@ -46,7 +46,7 @@ int		ft_toupper(int c);
 // Converts a string to an integer (base 10)
 int		ft_atoi(const char *str);
 
-// Converts a string to an integer for a specific base (e.g., hexadecimal, octal)
+// Converts a string to an integer for a specific base
 int		ft_atoi_base(const char *str, int str_base);
 
 // Compares two strings lexicographically (up to 'n' characters)
@@ -73,16 +73,16 @@ char	*ft_strjoin(char const *s1, char const *s2);
 // (malloc) Removes leading and trailing characters from a string
 char	*ft_strtrim(char const *s1, char const *set);
 
-// Finds the first occurrence of a substring within a string (up to 'len' characters)
+// Finds the first occurrence of a substring (up to 'len' characters)
 char	*ft_strnstr(const char *s1, const char *s2, size_t len);
 
 // Copies up to `n` characters from the string `src` into the buffer `dest`.
-char    *ft_strncpy(char *dest, const char *src, size_t n);
+char	*ft_strncpy(char *dest, const char *src, size_t n);
 
 // (malloc) Extracts a substring from a string
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
-// (malloc) Applies a function to each character of a string, returning a new string
+// (malloc) Applies a function to each character of a string, returning a string
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 // (malloc) Splits a string into an array of strings based on a delimiter
@@ -94,10 +94,10 @@ size_t	ft_strlen(const char *s);
 // Concatenates two strings, ensuring the destination buffer does not overflow
 size_t	ft_strlcat(char *dest, const char *src, size_t d_size);
 
-// Copies a string into a buffer, ensuring the destination buffer does not overflow
+// Copies a string, ensuring the destination buffer does not overflow
 size_t	ft_strlcpy(char *dest, const char *src, size_t d_size);
 
-// Allocates memory for an array of 'n' elements of size 'size' and initializes them to zero
+// Allocates memory and initializes them to zero
 void	*ft_calloc(size_t n, size_t size);
 
 // Fills a block of memory with a specific byte value

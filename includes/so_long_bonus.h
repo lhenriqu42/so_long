@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:15 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/14 16:22:53 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:00:34 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define AT_PUP "pup/"
 
 // ANIMATED TEXTURE COUNT
-# define ATC_DIE 6
+# define ATC_DIE 7
 # define ATC_ENEMY 10
 # define ATC_PDOWN 6
 # define ATC_PLEFT 9
@@ -94,7 +94,6 @@ typedef struct s_coin
 typedef struct s_animation
 {
 	mlx_image_t	*frames[20];
-	mlx_image_t	*current_frame;
 	int			frame_count;
 	int			current_index;
 	int			delay;
@@ -112,6 +111,7 @@ typedef struct s_img
 	t_animation			pup;
 	t_animation			pdie;
 	t_animation			enemy;
+	unsigned int		finish;
 	t_coin				collect[10000];
 }						t_img;
 
@@ -159,6 +159,7 @@ typedef struct s_game
 	t_file			file;
 	int				count;
 	int				steps;
+	int				last_direction;
 	t_flood			flood;
 	t_img			img;
 }					t_game;
@@ -185,7 +186,12 @@ void		handle_error(short code);
 void		display_moves(t_game *game);
 t_game		*get_game(void);
 t_mlx		*get_mlx(void);
-void		update_animation(t_animation *anim);
 
+// ANIMATION FUNCTIONS
+void		init_death_animation(void);
+void		update_animation(t_animation *anim);
+void		ft_handle_directions(t_img *img, int direction);
+void		ft_clean_all_directions(t_img *img, int exclude);
+void		ft_move_all_player(t_img *img, int x, int y, int i);
 
 #endif

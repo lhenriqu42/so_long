@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:35:55 by lhenriqu          #+#    #+#             */
-/*   Updated: 2024/12/30 13:06:55 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:15:02 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 // MACROS
-# define DECIMAL_BASE "0123456789"
+# define DECI_BASE "0123456789"
 # define HEXA_UP "0123456789ABCDEF"
 # define HEXA_LOW "0123456789abcdef"
 

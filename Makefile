@@ -51,6 +51,7 @@ OBJS := $(addprefix $(BIN_PATH), $(FILES:%.c=%.o))
 BONUS_NAME := so_long_bonus
 BONUS_SRC_PATH := ./src/bonus/
 BONUS_FILES := \
+	animation_utils_bonus.c \
 	validation_bonus.c \
 	animation_bonus.c \
 	image_bonus.c \
@@ -129,16 +130,15 @@ $(BIN_PATH)%.o: $(BONUS_SRC_PATH)%.c
 
 clean:
 	@printf "$(RED)[Removing Objects...]$(COLOR_LIMITER)\n"
-	@make clean -C $(LIB_PATH) --no-print-directory
+	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(MLX_BUILD_PATH)
 	@rm -rf $(BIN_PATH)
+	@rm -rf $(VALGRIND_LOG)
 
 fclean: clean
 	@printf "$(RED)[Removing $(notdir $(NAME))...]$(COLOR_LIMITER)\n"
-	@make fclean -C $(LIB_PATH) --no-print-directory
 	@rm -rf $(NAME)
 	@rm -rf $(BONUS_NAME)
-	@rm -rf $(VALGRIND_LOG)
 
 re: fclean
 	@make --no-print-directory

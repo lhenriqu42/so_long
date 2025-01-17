@@ -6,21 +6,21 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:36:04 by lhenriqu          #+#    #+#             */
-/*   Updated: 2024/12/30 12:45:05 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:10:23 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t ft_putchar(char c)
+size_t	ft_putchar(char c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-size_t ft_putstr(char *str)
+size_t	ft_putstr(char *str)
 {
-	int len;
+	int	len;
 
 	if (str == NULL)
 		return (ft_putstr("(null)"));

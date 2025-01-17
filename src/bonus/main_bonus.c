@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:22:03 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/14 16:58:03 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:55:47 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int argc, char *argv[])
 		handle_error(E_INVALID_ARGS);
 	ft_validate_file(argv[1]);
 	game = get_game();
-	// ft_init_game_struct(game);
 	ft_get_map(game, argv[1]);
 	ft_validate_map(game);
 	ft_start_mlx(game);

@@ -6,7 +6,7 @@
 /*   By: lhenriqu <lhenriqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:22:16 by lhenriqu          #+#    #+#             */
-/*   Updated: 2025/01/10 17:34:04 by lhenriqu         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:16:33 by lhenriqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	display_moves(t_game *game)
 
 	if (move_img)
 		mlx_delete_image(get_mlx()->mlx_ptr, move_img);
-	counter = ft_itoa(game->steps - 1);
+	counter = ft_itoa(game->steps);
 	mlx_put_string(get_mlx()->mlx_ptr, "steps:", 5, 5);
 	move_img = mlx_put_string(get_mlx()->mlx_ptr, counter, 70, 5);
 	free(counter);
