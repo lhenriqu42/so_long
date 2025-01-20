@@ -15,7 +15,7 @@ NAME := so_long
 
 
 # FLAGS
-CFLAGS := -Ofast -fno-stack-protector -ffast-math -Wall -Wextra -Wunreachable-code -g3 #-Werror
+CFLAGS := -Ofast -fno-stack-protector -ffast-math -Wall -Wextra -Wunreachable-code -g3 -Werror
 LIBS := -ldl -lglfw -pthread -lm
 
 
