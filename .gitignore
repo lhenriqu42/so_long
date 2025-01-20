@@ -4,9 +4,3 @@ so_long
 so_long_bonus
 
 bin
-
-libs/libft/libft.a
-libs/libft/bin
-libs/libft/ft_printf/bin
-libs/libft/ft_printf_fd/bin
-libs/libft/get_next_line/bin
